@@ -55,8 +55,8 @@
                         <i class="fa-solid fa-sliders"></i> Diagnostic Control Panel
                     </h2>
                     <div class="flex gap-2">
-                        <button type="button" onclick="syncPlatform('Shopify')" class="px-2.5 py-1 bg-emerald-950/60 border border-emerald-800 hover:bg-emerald-900 text-emerald-300 text-xs rounded-lg transition cursor-pointer"><i class="fa-brands fa-shopify"></i> Shopify</button>
-                        <button type="button" onclick="syncPlatform('Etsy')" class="px-2.5 py-1 bg-amber-950/60 border border-amber-800 hover:bg-amber-900 text-amber-300 text-xs rounded-lg transition cursor-pointer"><i class="fa-brands fa-etsy"></i> Etsy</button>
+                        <button type="button" id="btn-shopify" class="px-2.5 py-1 bg-emerald-950/60 border border-emerald-800 hover:bg-emerald-900 text-emerald-300 text-xs rounded-lg transition cursor-pointer"><i class="fa-brands fa-shopify"></i> Shopify</button>
+                        <button type="button" id="btn-etsy" class="px-2.5 py-1 bg-amber-950/60 border border-amber-800 hover:bg-amber-900 text-amber-300 text-xs rounded-lg transition cursor-pointer"><i class="fa-brands fa-etsy"></i> Etsy</button>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                             <label class="text-slate-300 font-medium">Factory Cost / Unit ($)</label>
                             <span id="val-factory" class="text-cyan-400 font-bold">12.50</span>
                         </div>
-                        <input type="range" id="factoryCost" min="1" max="100" step="0.5" value="12.5" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="factoryCost" min="1" max="100" step="0.5" value="12.5" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
 
                     <div>
@@ -77,7 +77,7 @@
                             <label class="text-slate-300 font-medium">Target Retail Price ($)</label>
                             <span id="val-retail" class="text-cyan-400 font-bold">49.99</span>
                         </div>
-                        <input type="range" id="retailPrice" min="5" max="300" step="0.5" value="49.99" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="retailPrice" min="5" max="300" step="0.5" value="49.99" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                             <label class="text-slate-300 font-medium">Ad Spend / Acquisition (CPA) ($)</label>
                             <span id="val-cpa" class="text-cyan-400 font-bold">14.00</span>
                         </div>
-                        <input type="range" id="cpaCost" min="0" max="100" step="0.5" value="14" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="cpaCost" min="0" max="100" step="0.5" value="14" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
 
                     <div>
@@ -98,7 +98,7 @@
                             <label class="text-slate-300 font-medium">Return Rate (%)</label>
                             <span id="val-return" class="text-cyan-400 font-bold">8%</span>
                         </div>
-                        <input type="range" id="returnRate" min="0" max="30" step="1" value="8" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="returnRate" min="0" max="30" step="1" value="8" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                             <label class="text-slate-300 font-medium">Monthly Storage Fee / Unit ($)</label>
                             <span id="val-storage" class="text-cyan-400 font-bold">0.75</span>
                         </div>
-                        <input type="range" id="monthlyStorage" min="0" max="5" step="0.05" value="0.75" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="monthlyStorage" min="0" max="5" step="0.05" value="0.75" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
 
                     <div>
@@ -119,15 +119,15 @@
                             <label class="text-slate-300 font-medium">Months in Warehouse (Storage Burn)</label>
                             <span id="val-months" class="text-cyan-400 font-bold">4 Months</span>
                         </div>
-                        <input type="range" id="warehouseMonths" min="1" max="18" step="1" value="4" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer" oninput="calculateAudit()">
+                        <input type="range" id="warehouseMonths" min="1" max="18" step="1" value="4" class="w-full accent-cyan-500 bg-[var(--bg-input)] rounded-lg cursor-pointer">
                     </div>
                 </div>
 
                 <div class="pt-4 flex flex-col sm:flex-row gap-3">
-                    <button type="button" onclick="runDeepDiagnosticsAction()" class="flex-1 py-3 px-6 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl transition shadow-lg shadow-cyan-900/45 flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="button" id="btn-diagnostics" class="flex-1 py-3 px-6 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl transition shadow-lg shadow-cyan-900/45 flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-microchip"></i> Run Deep Diagnostics
                     </button>
-                    <button type="button" onclick="exportToExcel()" class="py-3 px-5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-xl transition flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <button type="button" id="btn-export" class="py-3 px-5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-xl transition flex items-center justify-center gap-2 text-sm cursor-pointer">
                         <i class="fa-solid fa-file-excel text-emerald-400"></i> Export CSV
                     </button>
                 </div>
@@ -185,7 +185,7 @@
                         </div>
                     </div>
 
-                    <button type="button" onclick="downloadReport()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition shadow-lg shadow-emerald-950 flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <button type="button" id="btn-download" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition shadow-lg shadow-emerald-950 flex items-center justify-center gap-2 text-sm cursor-pointer">
                         <i class="fa-solid fa-download"></i> Download Full Audit Report (.txt)
                     </button>
                 </div>
@@ -196,7 +196,7 @@
 
     </div>
 
-    <!-- Diagnostic Script & Chart Engine -->
+    <!-- Diagnostic Script & Event Listeners -->
     <script>
         let leakChartInstance = null;
 
@@ -282,15 +282,11 @@
             document.getElementById('recommendations-box').innerHTML = recHTML;
         }
 
-        function runDeepDiagnosticsAction() {
-            calculateAudit();
-        }
-
         function syncPlatform(platformName) {
-            if(platformName === 'Shopify') {
+            if (platformName === 'Shopify') {
                 document.getElementById('cpaCost').value = 12.5;
                 document.getElementById('returnRate').value = 6;
-            } else {
+            } else if (platformName === 'Etsy') {
                 document.getElementById('cpaCost').value = 9.0;
                 document.getElementById('returnRate').value = 4;
             }
@@ -349,7 +345,27 @@ Audit Execution Date: 2026-07-29
             document.body.removeChild(a);
         }
 
-        window.onload = calculateAudit;
+        // ربط الأحداث برمجياً (Event Listeners) لضمان استجابة الأزرار والمؤشرات فورياً وبدقة
+        document.addEventListener('DOMContentLoaded', () => {
+            // تشخيص الحسابات أول ما يفتح الموقع
+            calculateAudit();
+
+            // ربط حركات المؤشرات (Sliders) لتحديث الحسابات لحظياً
+            ['factoryCost', 'retailPrice', 'cpaCost', 'returnRate', 'monthlyStorage', 'warehouseMonths'].forEach(id => {
+                document.getElementById(id).addEventListener('input', calculateAudit);
+            });
+
+            // ربط الأزرار بوظائفها
+            document.getElementById('btn-shopify').addEventListener('click', () => syncPlatform('Shopify'));
+            document.getElementById('btn-etsy').addEventListener('click', () => syncPlatform('Etsy'));
+            
+            document.getElementById('btn-diagnostics').addEventListener('click', () => {
+                calculateAudit();
+            });
+
+            document.getElementById('btn-export').addEventListener('click', exportToExcel);
+            document.getElementById('btn-download').addEventListener('click', downloadReport);
+        });
     </script>
 </body>
 </html>
